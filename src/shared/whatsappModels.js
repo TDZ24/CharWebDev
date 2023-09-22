@@ -1,3 +1,5 @@
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Text
 function MessageText(textResponse, number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp", 
@@ -9,7 +11,23 @@ function MessageText(textResponse, number){
         "type": "text"
     });
     return data;
-} 
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//descripcion nevera
+function MessageDescripti(textResponse, number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp", 
+        "to": number,
+        "text": {
+            "preview_url": true,
+            "body": textResponse
+        },
+        "type": "text"
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Lista
 
 function MessageList(number){
     const data = JSON.stringify({
@@ -19,10 +37,10 @@ function MessageList(number){
         "interactive": {
             "type": "list",
             "body": {
-                "text": "Tenemos estas opciones"
+                "text": "✅ Tenemos estos productos disponibles ✅"
             },
             "footer": {
-                "text": "Dale en ver opciones para desplegar la lista: "
+                "text": "👌 Dale en ver opciones para desplegar la lista 👌"
             },
             "action": {
                 "button": "Ver Opciones",
@@ -31,14 +49,19 @@ function MessageList(number){
                         "title": "Compra y vende productos",
                         "rows": [
                             {
-                                "id": "main-comprar",
-                                "title":"Comprar",
-                                "description":"Compra los mejores productos para tu hogar"
+                                "id": "main-nevera",
+                                "title":"Nevera",
+                                "description":"Nevera Full stack Junior"
                             },
                             {
-                                "id": "main-vender",
-                                "title":"Vender",
-                                "description":"Vende tus productos"
+                                "id": "main-licuadora",
+                                "title":"Licuadora",
+                                "description":"Licuadora Rompe Front-Ends"
+                            },
+                            {
+                                "id": "main-lavadora",
+                                "title":"Lavadora",
+                                "description":"Lavadora de cerebros"
                             }
                         ]
                     },
@@ -63,6 +86,51 @@ function MessageList(number){
     });
     return data;
 }
+ 
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Imagen 1
+
+function MessageImageOne(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp", 
+        "to": number,
+        "type": "image",
+        "image": {
+            "link": "https://media.aldiaferreteria.com/2393-home_default/nevera-black-series-ca-cr-312b-232lts.jpg"
+        }  
+    });
+    return data;
+} 
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Imagen 2
+
+function MessageImageTwo(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp", 
+        "to": number,
+        "type": "image",
+        "image": {
+            "link": "https://images.hola.com/imagenes/decoracion/20210804194089/lavadora-carga-frontal-superior-nu/0-982-103/lavadora-carga-frontal-superior-hola-decoracion-t.jpg"
+        }  
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Imagen 3
+
+function MessageImageThree(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp", 
+        "to": number,
+        "type": "image",
+        "image": {
+            "link": "https://mueblesdummi.com/wp-content/uploads/2018/11/Licuadora-tradicional-oster.jpg"
+        }  
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Ubicacion
 
 function MessageLocation(number){
     const data = JSON.stringify({
@@ -78,6 +146,8 @@ function MessageLocation(number){
 });
 return data;
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Boton de compra
 
 function MessageBuy(number){
     const data = JSON.stringify({
@@ -87,22 +157,22 @@ function MessageBuy(number){
         "interactive": {
             "type": "button",
             "body": {
-                "text": "😉 Selecciona uno de los productos: 😉"
+                "text": "Escoge lo que quieres hacer con este producto"
             },
             "action": {
                 "buttons": [
                     {
                         "type": "reply",
                         "reply": {
-                            "id": "option-laptop",
-                            "title": "💻 Laptop 💻"
+                            "id": "option-comprar",
+                            "title": "Comprar"
                         }
                     },
                     {
                         "type": "reply",
                         "reply": {
-                            "id": "option-phone",
-                            "title": "📱 Computadora 📱"
+                            "id": "option-detalles",
+                            "title": "Detalles"
                         }
                     }
                 ]
@@ -111,10 +181,15 @@ function MessageBuy(number){
     });
     return data;
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Modulos para exportar
 
 module.exports = {
     MessageText,
     MessageList,
     MessageBuy,
-    MessageLocation
+    MessageLocation,
+    MessageImageOne,
+    MessageImageTwo,
+    MessageImageThree
 }

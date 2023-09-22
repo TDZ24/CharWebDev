@@ -43,16 +43,31 @@ function Process (textUser, number){
         models.push(model); 
     }
 //--------------------------------------------------------------------------------------------------------------------------------------------
-    // Comprar
-    else if(textUser.includes("comprar")){
+    // Comprar nevera
+    else if(textUser.includes("nevera")){
+        var model = whatsappModel.MessageImageOne(number);
+        models.push(model);
+
+        var model = whatsappModel.MessageBuy(number);
+        models.push(model);
+    }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+    // Comprar licudara 
+    else if(textUser.includes("licuadora")){
+        var model = whatsappModel.MessageImageTwo(number);
+        models.push(model);
+
         var model = whatsappModel.MessageBuy(number);
         models.push(model);
 
     }
 //--------------------------------------------------------------------------------------------------------------------------------------------
-    // Vender 
-    else if(textUser.includes("vender")){
-        var model = whatsappModel.MessageText("Debes de registrarte en el siguiente link para evaluarte: (LINK)", number);
+    // Comprar lavadora 
+    else if(textUser.includes("lavadora")){
+        var model = whatsappModel.MessageImageThree(number);
+        models.push(model);
+
+        var model = whatsappModel.MessageBuy(number);
         models.push(model);
 
     }
