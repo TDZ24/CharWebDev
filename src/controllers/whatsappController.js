@@ -34,6 +34,8 @@ const ReceivedMessage  = (req, res) => {
             var text = GetTextUser(messages);
 
             if(text != ""){
+                myConsole.log(text);
+                myConsole.log(number);
                 processMessage.Process(text, number);
             }
         }

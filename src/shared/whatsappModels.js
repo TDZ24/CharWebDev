@@ -2,21 +2,7 @@
 //Text
 function MessageText(textResponse, number){
     const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
-        "to": number,
-        "text": {
-            "preview_url": true,
-            "body": textResponse
-        },
-        "type": "text"
-    });
-    return data;
-}
-//--------------------------------------------------------------------------------------------------------------------------------------------
-//descripcion nevera
-function MessageDescripti(textResponse, number){
-    const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
+        "messaging_product": "whatsapp",
         "to": number,
         "text": {
             "preview_url": true,
@@ -28,10 +14,9 @@ function MessageDescripti(textResponse, number){
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Lista
-
 function MessageList(number){
     const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "interactive",
         "interactive": {
@@ -82,59 +67,67 @@ function MessageList(number){
                     }
                 ]
             }
-        } 
+        }
     });
     return data;
 }
- 
 //--------------------------------------------------------------------------------------------------------------------------------------------
-//Imagen 1
-
+//Imagen Nevera
 function MessageImageOne(number){
     const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "image",
         "image": {
             "link": "https://media.aldiaferreteria.com/2393-home_default/nevera-black-series-ca-cr-312b-232lts.jpg"
-        }  
-    });
-    return data;
-} 
-//--------------------------------------------------------------------------------------------------------------------------------------------
-//Imagen 2
-
-function MessageImageTwo(number){
-    const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
-        "to": number,
-        "type": "image",
-        "image": {
-            "link": "https://images.hola.com/imagenes/decoracion/20210804194089/lavadora-carga-frontal-superior-nu/0-982-103/lavadora-carga-frontal-superior-hola-decoracion-t.jpg"
-        }  
+        }
     });
     return data;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
-//Imagen 3
-
-function MessageImageThree(number){
+//Imagen Licuadora
+function MessageImageTwo(number){
     const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "image",
         "image": {
             "link": "https://mueblesdummi.com/wp-content/uploads/2018/11/Licuadora-tradicional-oster.jpg"
-        }  
+        }
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Imagen Lavadora
+function MessageImageThree(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "image",
+        "image": {
+            "link": "https://images.hola.com/imagenes/decoracion/20210804194089/lavadora-carga-frontal-superior-nu/0-982-103/lavadora-carga-frontal-superior-hola-decoracion-t.jpg"
+        }
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Imagen qr
+function MessageImageQR(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "image",
+        "image": {
+            "link": "https://i.imgur.com/iF9gdTo.png"
+        }
     });
     return data;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Ubicacion
-
 function MessageLocation(number){
     const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "location",
         "location": {
@@ -147,11 +140,10 @@ function MessageLocation(number){
 return data;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
-//Boton de compra
-
-function MessageBuy(number){
+//Boton de compra nevera
+function MessageBuyNevera(number){
     const data = JSON.stringify({
-        "messaging_product": "whatsapp", 
+        "messaging_product": "whatsapp",
         "to": number,
         "type": "interactive",
         "interactive": {
@@ -164,32 +156,182 @@ function MessageBuy(number){
                     {
                         "type": "reply",
                         "reply": {
-                            "id": "option-comprar",
+                            "id": "option-comprar-nevera",
                             "title": "Comprar"
                         }
                     },
                     {
                         "type": "reply",
                         "reply": {
-                            "id": "option-detalles",
-                            "title": "Detalles"
+                            "id": "option-regresar-menu",
+                            "title": "Mostrar listado"
                         }
                     }
                 ]
             }
-        } 
+        }
     });
     return data;
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Boton de compra Licuadora
+function MessageBuyLicuadora(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Escoge lo que quieres hacer con este producto"
+            },
+            "action": {
+                "buttons": [
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-comprar-licuadora",
+                            "title": "Comprar"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-regresar-listado",
+                            "title": "Mostrar listado"
+                        }
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+//Boton de compra Lavadora
+function MessageBuyLavadora(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Escoge lo que quieres hacer con este producto"
+            },
+            "action": {
+                "buttons": [
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-comprar-lavadora",
+                            "title": "Comprar"
+                        }
+                    },
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-regresar-listado",
+                            "title": "Mostrar listado"
+                        }
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Recomendaciones de productos
+function MessageWithProducts(products, number){
+    const productText = "*Aquí tienes algunas sugerencias de electrodomésticos:* \n" +
+                       products.join("\n");
+
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "text": {
+            "preview_url": true,
+            "body": productText
+        },
+        "type": "text"
+    });
+
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Calendario de eventos
+function MessageWithEvents(textResponse, number) {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "text": {
+            "preview_url": true,
+            "body": textResponse
+        },
+        "type": "text"
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Reservacion
+function MessageWithReservation(textResponse, number, reservationDetails) {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "text": {
+            "preview_url": true,
+            "body": textResponse
+        },
+        "type": "text",
+        "reservation": reservationDetails
+    });
+    return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Suscripcion
+// function MessageSubscriptionConfirmation(number) {
+//     const data = JSON.stringify({
+//         "messaging_product": "whatsapp",
+//         "to": number,
+//         "type": "document",
+//         "document": {
+//             "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/document_whatsapp.pdf"
+//         }
+//     });
+//     return data;
+// }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Links de redes sociales
+function MessageLink(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "text": {
+            "preview_url": true,
+            "body": "Visita nuestras redes sociales para más información: https://www.cesde.edu.co/"
+        }
+    });
+    return data;
+}
+
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Modulos para exportar
 
 module.exports = {
     MessageText,
     MessageList,
-    MessageBuy,
+    MessageBuyNevera,
+    MessageBuyLicuadora,
+    MessageBuyLavadora,
     MessageLocation,
     MessageImageOne,
     MessageImageTwo,
-    MessageImageThree
+    MessageImageThree,
+    MessageImageQR,
+    MessageWithProducts,
+    MessageWithEvents,
+    MessageWithReservation,
+    MessageSubscriptionConfirmation,
+    MessageLink,
+    extractEmailFromText
 }
