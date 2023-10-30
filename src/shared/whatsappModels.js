@@ -13,8 +13,91 @@ function MessageText(textResponse, number){
     return data;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
-//Lista
+//Lista de funciones
 function MessageList(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "list",
+            "body": {
+                "text": "😈 Escoge lo que quieres hacer con nosotros 😈"
+            },
+            "footer": {
+                "text": "👌 Dale en ver opciones para desplegar la lista 👌"
+            },
+            "action": {
+                "button": "Ver Opciones",
+                "sections": [
+                    {
+                        "title": "Centro de atención",
+                        "rows": [
+                            {
+                                "id": "main-agencia",
+                                "title":"Agencia",
+                                "description":"Visita nuestra agencia"
+                            },
+                            {
+                                "id": "main-ver",
+                                "title":"Ver Productos",
+                                "description":"Vistazo rapido a nuestros productos"
+                            },
+                            {
+                                "id": "main-contacto",
+                                "title":"Centro de contacto",
+                                "description":"Te atendera uno de nuestros agentes"
+                            },
+                            {
+                                "id": "main-horario-atencion",
+                                "title":"Horario de atencion",
+                                "description":"Mira el horario de atencion"
+                            },
+                            {
+                                "id": "main-evento",
+                                "title":"Mostrar eventos",
+                                "description":"Mira nuestros eventos"
+                            },
+                            {
+                                "id": "main-recomendaciones",
+                                "title":"Mostrar recomendaciones",
+                                "description":"Recomendaciones para ti"
+                            },
+                            {
+                                "id": "main-reservaciones",
+                                "title":"Reservaciones",
+                                "description":"Reserva tu espacio con nosotros"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Despedida",
+                        "rows": [
+                            {
+                                "id": "main-calificar",
+                                "title":"calificar",
+                                "description":"No te olvides de calificar nuestros servicios"
+                            },
+                            {
+                                "id": "main-reclamos",
+                                "title":"quejarse",
+                                "description":"Puedes hacer tu retroalimentacion"
+                            },
+                            {
+                                "id": "main-redes",
+                                "title":"Redes sociales",
+                                "description":"No te olvides seguirnos en todas las redes sociales"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    });
+    return data;
+}
+//Lista de Productos
+function MessageListProducts(number){
     const data = JSON.stringify({
         "messaging_product": "whatsapp",
         "to": number,
@@ -31,7 +114,7 @@ function MessageList(number){
                 "button": "Ver Opciones",
                 "sections": [
                     {
-                        "title": "Compra y vende productos",
+                        "title": "Compra productos",
                         "rows": [
                             {
                                 "id": "main-nevera",
@@ -47,21 +130,11 @@ function MessageList(number){
                                 "id": "main-lavadora",
                                 "title":"Lavadora",
                                 "description":"Lavadora de cerebros"
-                            }
-                        ]
-                    },
-                    {
-                        "title": "Centro de atención",
-                        "rows": [
-                            {
-                                "id": "main-agencia",
-                                "title":"Agencia",
-                                "description":"Visita nuestra agencia"
                             },
                             {
-                                "id": "main-contacto",
-                                "title":"Centro de contacto",
-                                "description":"Te atendera uno de nuestros agentes"
+                                "id": "main-volver",
+                                "title":"Mostrar listado",
+                                "description":"Vuelve a ver el listado de acciones"
                             }
                         ]
                     }
@@ -138,6 +211,33 @@ function MessageLocation(number){
     }
 });
 return data;
+}
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Boton de mostrar listado de acciones
+function MessageReturn(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "interactive",
+        "interactive": {
+            "type": "button",
+            "body": {
+                "text": "Si quieres regresar al listado dale click"
+            },
+            "action": {
+                "buttons": [
+                    {
+                        "type": "reply",
+                        "reply": {
+                            "id": "option-regresar-listado",
+                            "title": "Mostrar listado"
+                        }
+                    }
+                ]
+            }
+        }
+    });
+    return data;
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Boton de compra nevera
@@ -289,17 +389,17 @@ function MessageWithReservation(textResponse, number, reservationDetails) {
 }
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Suscripcion
-// function MessageSubscriptionConfirmation(number) {
-//     const data = JSON.stringify({
-//         "messaging_product": "whatsapp",
-//         "to": number,
-//         "type": "document",
-//         "document": {
-//             "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/document_whatsapp.pdf"
-//         }
-//     });
-//     return data;
-// }
+function MessageSubscriptionConfirmation(number) {
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "type": "document",
+        "document": {
+            "link": "https://biostoragecloud.blob.core.windows.net/resource-udemy-whatsapp-node/document_whatsapp.pdf"
+        }
+    });
+    return data;
+}
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Links de redes sociales
 function MessageLink(number){
@@ -313,6 +413,19 @@ function MessageLink(number){
     });
     return data;
 }
+//--------------------------------------------------------------------------------------------------------------------------------------------
+//Links de encuesta
+function MessageLinkForm(number){
+    const data = JSON.stringify({
+        "messaging_product": "whatsapp",
+        "to": number,
+        "text": {
+            "preview_url": true,
+            "body": "Realiza nuestra encuesta de opiniones: https://forms.office.com/r/EsSYLA6fbh"
+        }
+    });
+    return data;
+}
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //Modulos para exportar
@@ -320,6 +433,7 @@ function MessageLink(number){
 module.exports = {
     MessageText,
     MessageList,
+    MessageListProducts,
     MessageBuyNevera,
     MessageBuyLicuadora,
     MessageBuyLavadora,
@@ -333,5 +447,6 @@ module.exports = {
     MessageWithReservation,
     MessageSubscriptionConfirmation,
     MessageLink,
-    extractEmailFromText
+    MessageLinkForm, 
+    MessageReturn
 }

@@ -1,0 +1,100 @@
+const whatsappModel = require("../shared/whatsappModels");
+const whatsappService = require("../services/whatsappService");
+
+function Process(textUser, number) {
+  textUser = textUser.toLowerCase();
+  const models = [];
+
+  const sendWhatsAppMessage = (model) => {
+    models.push(model);
+    whatsappService.SendMessageWhatsApp(model);
+  };
+
+  if (textUser.includes("hola") || textUser.includes("hello")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("¡Hola! ¿En qué puedo ayudarte hoy?", number));
+    sendWhatsAppMessage(whatsappModel.MessageList(number));
+  } else if (
+    textUser.includes("donde estan ubicados") ||
+    textUser.includes("cual es la ubicación") ||
+    textUser.includes("donde estan ubicados?") ||
+    textUser.includes("dame la ubicados?")
+  ) {
+    sendWhatsAppMessage(whatsappModel.MessageText("🚩 Claro que sí estamos ubicados en la siguiente dirección: 🚩", number));
+    sendWhatsAppMessage(whatsappModel.MessageLocation(number));
+  } else if (textUser.includes("gracias") || textUser.includes("thanks")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("Gracias a ti por existir TQM 🤩🤩", number));
+  } else if (textUser.includes("adios") || textUser.includes("bye")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("Hasta luego my love", number));
+  } else if (textUser.includes("nevera")) {
+    sendWhatsAppMessage(whatsappModel.MessageImageOne(number));
+    sendWhatsAppMessage(whatsappModel.MessageBuyNevera(number));
+  } else if (textUser.includes("licuadora")) {
+    sendWhatsAppMessage(whatsappModel.MessageImageTwo(number));
+    sendWhatsAppMessage(whatsappModel.MessageBuyLicuadora(number));
+  } else if (textUser.includes("lavadora")) {
+    sendWhatsAppMessage(whatsappModel.MessageImageThree(number));
+    sendWhatsAppMessage(whatsappModel.MessageBuyLavadora(number));
+  } else if (textUser.includes("comprar")) {
+    sendWhatsAppMessage(whatsappModel.MessageImageQR(number));
+    sendWhatsAppMessage(whatsappModel.MessageText("Con este código QR puedes comprar este producto", number));
+  } else if (textUser.includes("agencia")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("🚩 Esta es la ubicación de nuestra agencia: 🚩", number));
+    sendWhatsAppMessage(whatsappModel.MessageLocation(number));
+  } else if (textUser.includes("mostrar listado")) {
+    sendWhatsAppMessage(whatsappModel.MessageList(number));
+  } else if (textUser.includes("contacto")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("*Centro de contacto:* \n +57 3006886607", number));
+  } else if (textUser.includes("¿cual es su horario de atencion?")) {
+    sendWhatsAppMessage(
+      whatsappModel.MessageText("*Este es el horario de atención:* \n Lunes: 9:00 AM - 5:00 PM \n Martes: 9:00 AM - 5:00 PM \n Miercoles: 9:00 AM - 5:00 PM \n Jueves: 9:00 AM - 5:00 PM \n Viernes: 9:00 AM - 5:00 PM \n Sabado: 10:00 AM - 2:00 PM \n Domingo; Cerrado", number)
+    );
+  } else if (textUser.includes("¿cuáles son sus próximos eventos?")) {
+    sendWhatsAppMessage(
+      whatsappModel.MessageWithEvents("*Próximos Eventos:* \n Evento 1 - 10 de octubre a las 3:00 PM \n Evento 2 - 15 de octubre a las 6:30 PM \n Evento 3 - 22 de octubre a las 4:45 PM", number)
+    );
+  } else if (textUser.includes("recomiéndame electrodomésticos")) {
+    const electrodomesticos = [
+      "1. Refrigerador de doble puerta con dispensador de agua",
+      "2. Lavadora de carga frontal con tecnología de ahorro de energía",
+      "3. Horno de convección multifuncional",
+      "4. Cafetera programable con molinillo integrado",
+      "5. Aspiradora robot inteligente con mapeo",
+    ];
+    sendWhatsAppMessage(whatsappModel.MessageWithProducts(electrodomesticos, number));
+  } else if (textUser.includes("reservar fecha")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("Por favor, ingresa la fecha y detalles de la reserva en formato DD/MM/AAAA HH:MM - Detalles adicionales", number));
+    // Suponemos que la respuesta del usuario tiene el formato correcto: DD/MM/AAAA HH:MM - Detalles adicionales
+    const userResponse = ""; // Esto es solo un ejemplo, debes ajustarlo según tus necesidades
+    const [userDate, userDetails] = userResponse.split(" - ");
+    const reservationDetails = {
+      date: userDate,
+      details: userDetails,
+    };
+    sendWhatsAppMessage(whatsappModel.MessageWithReservation("¡Fecha reservada con éxito!", number, reservationDetails));
+  } else if (textUser.includes("suscribirme al boletin") || textUser.includes("suscribirme")) {
+    sendWhatsAppMessage(
+      whatsappModel.MessageText("🤩 Woooooo quieres suscribirte a nuestro boletin muchas gracias🤩 \n Solo dame tu correo para poder añadirte a la lista \n Mira aca hay una vista previa de como te va a llegar a tu correo: ", number)
+    );
+    sendWhatsAppMessage(whatsappModel.MessageText("Este es nuestro boletin: ", number));
+    sendWhatsAppMessage(whatsappModel.MessageSubscriptionConfirmation(number));
+  } else if (textUser.includes("@")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("Ya estarías suscrito, te va a llegar un mensaje de confirmación a tu correo electrónico", number));
+  } else if (textUser.includes("calificar") || textUser.includes("quiero calificar")) {
+    sendWhatsAppMessage(
+      whatsappModel.MessageText("🤩Muchas gracias por calificar nuestro servicio, califícanos del (1-5)🤩 \n 1 ⭐ \n  2 ⭐⭐  \n 3 ⭐⭐⭐ \n 4 ⭐⭐⭐⭐ \n 5 ⭐⭐⭐⭐⭐", number)
+    );
+  } else if (textUser.includes("1") || textUser.includes("2") || textUser.includes("3") || textUser.includes("4") || textUser.includes("5")) {
+    sendWhatsAppMessage(whatsappModel.MessageText("Muchas gracias por calificarnos, si tienes algún problema o comentario puedes comunicarte con nosotros", number));
+    sendWhatsAppMessage(whatsappModel.MessageText("*Centro de contacto:* \n +57 3006886607", number));
+  } else if (textUser.includes("cuales son sus redes sociales") || textUser.includes("redes sociales")) {
+    sendWhatsAppMessage(whatsappModel.MessageLink(number));
+  } else {
+    sendWhatsAppMessage(whatsappModel.MessageText("No te entiendo por DIOS D: ", number));
+  }
+  
+  // No necesitas el bucle forEach ya que los mensajes se envían dentro de la función sendWhatsAppMessage.
+  }
+  
+  module.exports = {
+    Process,
+  };
